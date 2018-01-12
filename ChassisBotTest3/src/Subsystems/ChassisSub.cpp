@@ -43,6 +43,28 @@ void ChassisSub::chassisDrive(double left, double right)
 {
 	driveTrian->TankDrive(left, right);
 }
+void ChassisSub::chassisDrive(std::shared_ptr<Joystick>chassisJoysticks){
+
+	if(chassisJoysticks->GetRawButton(6)==1){
+		driveTrian->TankDrive(0.6*chassisJoysticks->GetRawAxis(5), 0.6*chassisJoysticks->GetRawAxis(1));
+	}
+	else if(chassisJoysticks->GetRawAxis(2)==1){
+		driveTrian->TankDrive(-.5*chassisJoysticks->GetRawAxis(1), -.5*chassisJoysticks->GetRawAxis(5));
+	}
+	else{
+		driveTrian->TankDrive(-1*chassisJoysticks->GetRawAxis(1), -1*chassisJoysticks->GetRawAxis(5));
+//	driveTrian->TankDrive(chassisJoysticks->GetRawAxis(1), chassisJoysticks->GetRawAxis(5));
+
+}
+}
+void ChassisSub::chassisDrive(double left, double right){
+	driveTrian->TankDrive(left, right);
+}
+//void ChassisSub::drivestop(){
+
+//	driveTrian->TankDrive(0.0, 0.0);
+
+//}
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
 

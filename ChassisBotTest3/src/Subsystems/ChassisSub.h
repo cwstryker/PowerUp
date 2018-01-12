@@ -38,8 +38,9 @@ public:
 
 	void chassisDrive(double left,double right);
 
-
 	void chassisDrive(std::shared_ptr<Joystick>chassisJoysticks);
+
+	void drivestop();
 
 };
 
