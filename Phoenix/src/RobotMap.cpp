@@ -31,9 +31,6 @@ void RobotMap::init() {
 
     drivetrainfrontleft.reset(new WPI_TalonSRX(0));
     
-    //WPI_TalonSRX drivetrainfrontleft = new WPI_TalonSRX(0);
-
-
     
     drivetrainrearleft.reset(new WPI_TalonSRX(1));
     
@@ -57,21 +54,23 @@ void RobotMap::init() {
     /*Set up the encoders */
 
     drivetrainfrontleft->SetSensorPhase(true); //reverse sensors?
-    drivetrainfrontright->SetSensorPhase(false); //reverse sensors?
+
+
+    drivetrainfrontright->SetSensorPhase(true); //reverse sensors?
 
     drivetrainfrontleft->ConfigSelectedFeedbackSensor(FeedbackDevice::QuadEncoder, 0, 10); //Set the talons to use quad encoders
     drivetrainfrontright->ConfigSelectedFeedbackSensor(FeedbackDevice::QuadEncoder,0,10);
 
     drivetrainfrontleft->Config_kF(0, 0.0, 10.0);
-    drivetrainfrontleft->Config_kP(0, 0.1, 10.0);
+    drivetrainfrontleft->Config_kP(0, 6.39375, 10.0);
     drivetrainfrontleft->Config_kI(0, 0.0, 10.0);
-    drivetrainfrontleft->Config_kD(0, 0.0, 10.0);
+    drivetrainfrontleft->Config_kD(0, 639.375, 10.0);
 
 
     drivetrainfrontright->Config_kF(0, 0.0, 10.0);
-    drivetrainfrontright->Config_kP(0, 0.1, 10.0);
+    drivetrainfrontright->Config_kP(0, 6.39375, 10.0);
     drivetrainfrontright->Config_kI(0, 0.0, 10.0);
-    drivetrainfrontright->Config_kD(0, 0.0, 10.0);
+    drivetrainfrontright->Config_kD(0, 639.375, 10.0);
 
 
 

@@ -57,7 +57,7 @@ void Drivetrain::Periodic() {
 // here. Call these from Commands.
 void Drivetrain::userDrive(std::shared_ptr<Joystick>xbox){
 	double left_y =-1*xbox->GetRawAxis(1);
-	double right_y = -1*xbox->GetRawAxis(5);
+	double right_y = 1*xbox->GetRawAxis(5);
 	if (fabs(left_y) < 0.10)
 		left_y = 0;
 	if (fabs(right_y) < 0.10)
@@ -70,27 +70,29 @@ void Drivetrain::userDrive(std::shared_ptr<Joystick>xbox){
 
 void Drivetrain::encoderPosition(double left, double right){
 	frontleft->Set(ControlMode::Position, 80*left);
-	frontright->Set(ControlMode::Position, 80*right);
+	frontright->Set(ControlMode::Position, -80*right);
+
 
 	l_pos = left;
 	r_pos = right;
 }
 
 void Drivetrain::encoderReset(){
+
 	frontleft->SetSelectedSensorPosition(0, 0, 10);
 	frontright->SetSelectedSensorPosition(0, 0, 10);
 
 }
-/*
+
 void Drivetrain::encoderDone(){
-	frontleft->Set(ControlMode::PercentOutput, *left_y); //TODO test If structure for multiple speeds
-	frontright->Set(ControlMode::PercentOutput, right_y);
+	frontleft->Set(ControlMode::PercentOutput, 0.0); //TODO test If structure for multiple speeds
+	frontright->Set(ControlMode::PercentOutput, 0.0);
 
 	l_pos = 0.0;
 	r_pos = 0.0;
 
 }
-*/
+
 bool Drivetrain::isMove(){
 	if ((frontleft->GetSelectedSensorPosition(0) < (l_pos + .1) && frontleft->GetSelectedSensorPosition(0) > (l_pos - .1))
 				&& frontright->GetSelectedSensorPosition(0) < (r_pos + .1)

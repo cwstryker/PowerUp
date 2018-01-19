@@ -34,7 +34,7 @@ void DriveEncRotations::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void DriveEncRotations::Execute() {
-	Robot::drivetrain->encoderPosition(10,10);
+	Robot::drivetrain->encoderPosition(20,20);
 		m_done = Robot::drivetrain->isMove();
 }
 
@@ -45,11 +45,11 @@ bool DriveEncRotations::IsFinished() {
 
 // Called once after isFinished returns true
 void DriveEncRotations::End() {
-	Robot::drivetrain->userDrive(Robot::oi->getxbox());
+	Robot::drivetrain->encoderDone();
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
 void DriveEncRotations::Interrupted() {
-	Robot::drivetrain->userDrive(Robot::oi->getxbox());
+	End();
 }
