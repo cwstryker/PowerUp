@@ -58,6 +58,9 @@ void RobotMap::init() {
 
     drivetrainfrontright->SetSensorPhase(true); //reverse sensors?
 
+    drivetrainfrontright->SetInverted(true);
+    drivetrainrearright->SetInverted(true);
+
     drivetrainfrontleft->ConfigSelectedFeedbackSensor(FeedbackDevice::QuadEncoder, 0, 10); //Set the talons to use quad encoders
     drivetrainfrontright->ConfigSelectedFeedbackSensor(FeedbackDevice::QuadEncoder,0,10);
 
