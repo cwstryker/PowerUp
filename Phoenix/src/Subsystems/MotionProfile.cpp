@@ -72,11 +72,43 @@ void MotionProfile::Periodic() {
 	frontleft->ChangeMotionControlFramePeriod(5);
 	frontright->ChangeMotionControlFramePeriod(5);
 
+	//SetValueMotionProfile setOutput = _example.getSetValue();
+
 }
 
 
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
+
+void MotionProfile::initMotionProfile(){
+	Robot::drivetrain->encoderReset();
+
+	//SetValueMotionProfile setOutput = _example.getSetValue();
+
+	//frontleft->Set(ControlMode::MotionProfile, setOutput);
+	//frontright->Set(ControlMode::MotionProfile, setOutput);
+
+
+
+	frontleft->ClearMotionProfileTrajectories();
+	frontright->ClearMotionProfileTrajectories();
+
+	frontleft->SelectProfileSlot(1,0);
+	frontright->SelectProfileSlot(1,0);
+
+
+
+
+	frontleft->ConfigMotionProfileTrajectoryPeriod(50, 10); //50 ms for our profile
+	frontright->ConfigMotionProfileTrajectoryPeriod(50,10);
+
+	frontleft->SetStatusFramePeriod(StatusFrameEnhanced::Status_10_MotionMagic, 50, 10);
+	frontright->SetStatusFramePeriod(StatusFrameEnhanced::Status_10_MotionMagic,50, 10);
+
+
+
+
+}
 
 void MotionProfile::reset()
 	{

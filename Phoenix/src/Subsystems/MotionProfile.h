@@ -42,6 +42,8 @@ private:
 	//Notifier _notifer;
 	SetValueMotionProfile _setValue;
 
+
+
 	double _lpos;
 	double _rpos;
 	double _lvel;
