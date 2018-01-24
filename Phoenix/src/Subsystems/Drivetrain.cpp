@@ -57,7 +57,7 @@ void Drivetrain::Periodic() {
 // here. Call these from Commands.
 void Drivetrain::userDrive(std::shared_ptr<Joystick>xbox){
 	double left_y =-1*xbox->GetRawAxis(1);
-	double right_y = 1*xbox->GetRawAxis(5);
+	double right_y = -1*xbox->GetRawAxis(5);
 	if (fabs(left_y) < 0.10)
 		left_y = 0;
 	if (fabs(right_y) < 0.10)
@@ -70,7 +70,7 @@ void Drivetrain::userDrive(std::shared_ptr<Joystick>xbox){
 
 void Drivetrain::encoderPosition(double left, double right){
 	frontleft->Set(ControlMode::Position, 80*left);
-	frontright->Set(ControlMode::Position, -80*right);
+	frontright->Set(ControlMode::Position, 80*right);
 
 
 	l_pos = left;

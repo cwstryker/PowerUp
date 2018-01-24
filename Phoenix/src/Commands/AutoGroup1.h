@@ -13,7 +13,11 @@
 #ifndef AUTOGROUP1_H
 #define AUTOGROUP1_H
 
+
+#include "Commands/Subsystem.h"
 #include "Commands/CommandGroup.h"
+
+//#include "TestProfile.h"
 
 /**
  *
