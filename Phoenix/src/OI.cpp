@@ -37,7 +37,7 @@ OI::OI() {
     b.reset(new frc::JoystickButton(xbox.get(), 2));
     b->WhenPressed(new DriveEncRotations());
     a.reset(new frc::JoystickButton(xbox.get(), 1));
-    a->WhenPressed(new RunMotionProfile());
+    a->WhenPressed(new AutoGroup1());
 
     // SmartDashboard Buttons
     frc::SmartDashboard::PutData("AutoGroup1", new AutoGroup1());
@@ -45,7 +45,7 @@ OI::OI() {
     frc::SmartDashboard::PutData("ResetEncoders", new ResetEncoders());
     frc::SmartDashboard::PutData("DriveStop", new DriveStop());
     frc::SmartDashboard::PutData("DriveEncRotations", new DriveEncRotations());
-    frc::SmartDashboard::PutData("RunMotionProfile", new RunMotionProfile());
+    //frc::SmartDashboard::PutData("RunMotionProfile", new RunMotionProfile());
     frc::SmartDashboard::PutData("DriveWithJoy", new DriveWithJoy());
     frc::SmartDashboard::PutData("Autonomous Command", new AutonomousCommand());
 
