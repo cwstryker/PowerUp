@@ -33,6 +33,7 @@ private:
 
 
 
+
 	public:
 	MotionProfile();
 	void InitDefaultCommand() override;
@@ -63,6 +64,8 @@ private:
 	static const int kMinPointsInTalon =5;
 
 	static const int kNumLoopsTimeout=10;
+
+	void PeriodicTask();
 
 	void initMotionProfile();
 
