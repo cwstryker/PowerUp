@@ -15,6 +15,7 @@
 #include "WPILib.h"
 #include "ctre/Phoenix.h"
 #include "Profiles.h"
+#include "../Instrumentation.h"
 
 /**
  *

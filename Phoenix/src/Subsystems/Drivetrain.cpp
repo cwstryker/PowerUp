@@ -82,6 +82,17 @@ void Drivetrain::encoderReset(){
 	frontleft->SetSelectedSensorPosition(0, 0, 10);
 	frontright->SetSelectedSensorPosition(0, 0, 10);
 
+	frontleft->Config_kF(RobotMap::kSlotIDx_CLoop, RobotMap::kF_CLoopLeft, RobotMap::kTimeoutMs);
+	frontleft->Config_kP(RobotMap::kSlotIDx_CLoop, RobotMap::kP_CLoopLeft, RobotMap::kTimeoutMs);
+	frontleft->Config_kI(RobotMap::kSlotIDx_CLoop, RobotMap::kI_CLoopLeft, RobotMap::kTimeoutMs);
+	frontleft->Config_kD(RobotMap::kSlotIDx_CLoop, RobotMap::kD_CLoopLeft, RobotMap::kTimeoutMs);
+
+
+	frontright->Config_kF(RobotMap::kSlotIDx_CLoop, RobotMap::kF_CLoopRight, RobotMap::kTimeoutMs);
+	frontright->Config_kP(RobotMap::kSlotIDx_CLoop, RobotMap::kP_CLoopRight, RobotMap::kTimeoutMs);
+	frontright->Config_kI(RobotMap::kSlotIDx_CLoop, RobotMap::kI_CLoopRight, RobotMap::kTimeoutMs);
+	frontright->Config_kD(RobotMap::kSlotIDx_CLoop, RobotMap::kD_CLoopRight, RobotMap::kTimeoutMs);
+
 
 
 }
