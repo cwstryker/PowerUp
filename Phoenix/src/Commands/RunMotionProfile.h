@@ -33,6 +33,9 @@ public:
 	//std::shared_ptr<MotionProfile> Robot::motionProfile;
 	//std::shared_ptr<WPI_TalonSRX> frontleft;
 	//std::shared_ptr<WPI_TalonSRX> frontright;
+	//std::shared_ptr<MotionProfile> motionProfile;
+
+	//MotionProfile _example;
 
 	void Initialize() override;
 	void Execute() override;
