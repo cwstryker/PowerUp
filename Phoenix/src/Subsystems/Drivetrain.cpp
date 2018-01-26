@@ -82,6 +82,8 @@ void Drivetrain::encoderReset(){
 	frontleft->SetSelectedSensorPosition(0, 0, 10);
 	frontright->SetSelectedSensorPosition(0, 0, 10);
 
+
+
 }
 
 void Drivetrain::encoderDone(){
