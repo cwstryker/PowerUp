@@ -48,23 +48,25 @@ public:
 
 	static const int kSensorUnitsPerRotation = 80; //CIMcoder 4 * 20 pulses
 
+	static const int kProfilePeriodms = 10; //Motion Profile period between points.
+
 	/*Closed Loop PID_F constants */
 
 	static constexpr double kF_CLoopLeft = 0.0;
 
-	static constexpr double kP_CLoopLeft = 6.39375;
+	static constexpr double kP_CLoopLeft = 3;
 
 	static constexpr double kI_CLoopLeft = 0.0;
 
-	static constexpr double kD_CLoopLeft = 639.375;
+	static constexpr double kD_CLoopLeft = 300;
 
 	static constexpr double kF_CLoopRight = 0.0;
 
-	static constexpr double kP_CLoopRight = 6.39375;
+	static constexpr double kP_CLoopRight = 3;
 
 	static constexpr double kI_CLoopRight = 0.0;
 
-	static constexpr double kD_CLoopRight = 639.375;
+	static constexpr double kD_CLoopRight = 300;
 
 
 	/*Motion Profile PID_F constants */

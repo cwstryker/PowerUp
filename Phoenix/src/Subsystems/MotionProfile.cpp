@@ -60,10 +60,10 @@ MotionProfile::MotionProfile() : frc::Subsystem("MotionProfile"), _notifier(&Mot
 
 	//Notifier *_notifier = new Notifier(MotionProfile::PeriodicTask());
 
-	_notifier.StartPeriodic(0.025);
+	_notifier.StartPeriodic(0.005);
 
-	frontleft->ChangeMotionControlFramePeriod(25);
-	frontright->ChangeMotionControlFramePeriod(25);
+	frontleft->ChangeMotionControlFramePeriod(RobotMap::kProfilePeriodms/2);
+	frontright->ChangeMotionControlFramePeriod(RobotMap::kProfilePeriodms/2);
 
 }
 
@@ -112,8 +112,8 @@ void MotionProfile::initMotionProfile(){
 	 frontright->Config_kD(RobotMap::kSlotIDx_Motion, RobotMap::kD_MotionRight, RobotMap::kTimeoutMs);
 
 
-	frontleft->SetStatusFramePeriod(StatusFrameEnhanced::Status_10_MotionMagic, 50, 10);
-	frontright->SetStatusFramePeriod(StatusFrameEnhanced::Status_10_MotionMagic,50, 10);
+	frontleft->SetStatusFramePeriod(StatusFrameEnhanced::Status_10_MotionMagic, RobotMap::kProfilePeriodms, 10);
+	frontright->SetStatusFramePeriod(StatusFrameEnhanced::Status_10_MotionMagic,RobotMap::kProfilePeriodms, 10);
 
 
 	frontleft->SelectProfileSlot(RobotMap::kSlotIDx_Motion, 0);
@@ -146,7 +146,7 @@ void MotionProfile::reset()
 		frontleft->Set(ControlMode::PercentOutput, 0.0);
 		frontright->Set(ControlMode::PercentOutput, 0.0);
 
-		Robot::drivetrain->encoderReset();
+		//Robot::drivetrain->encoderReset();
 
 
 		//Robot::drivetrain->encoderDone();
@@ -242,7 +242,7 @@ void MotionProfile::control()
 						 * because we set the last point's isLast to true, we will
 						 * get here when the MP is done*/
 
-						_setValue = SetValueMotionProfile::Hold;
+						_setValue = SetValueMotionProfile::Disable;
 						_state = 0;
 						_loopTimeout = -1;
 					}
@@ -334,8 +334,8 @@ void MotionProfile::startFilling()
 				double lvelocityRPM = leftprofile[i][1];
 
 				/* for each point, fill our structure and pass it to API */
-				lpoint.position = lpositionRot * RobotMap::kSensorUnitsPerRotation*2*3.14159*.5 ;  //Convert Revolutions to Units
-				lpoint.velocity = lvelocityRPM * (RobotMap::kSensorUnitsPerRotation*2*3.14159*.5) / 600.0; //Convert RPM to Units/100ms
+				lpoint.position = lpositionRot * RobotMap::kSensorUnitsPerRotation*2*3.14159*.5*1.5 ;  //Convert Revolutions to Units
+				lpoint.velocity = lvelocityRPM * (RobotMap::kSensorUnitsPerRotation*2*3.14159*.5*1.5) / 600.0; //Convert RPM to Units/100ms
 				lpoint.headingDeg = 0; /* future feature - not used in this example*/
 				lpoint.profileSlotSelect0 = RobotMap::kSlotIDx_Motion; /* which set of gains would you like to use [0,3]? */
 				lpoint.profileSlotSelect1 = 0; /* future feature  - not used in this example - cascaded PID [0,1], leave zero */
@@ -345,7 +345,7 @@ void MotionProfile::startFilling()
 					lpoint.zeroPos = true; /* set this to true on the first point */
 
 				lpoint.isLastPoint = false;
-				if ((i - 1) == leftCnt)
+				if ((i + 1) == leftCnt)
 					lpoint.isLastPoint = true; /* set this to true on the last point  */
 
 				frontleft->PushMotionProfileTrajectory(lpoint);
@@ -356,8 +356,8 @@ void MotionProfile::startFilling()
 							double rvelocityRPM = rightprofile[j][1];
 
 							/* for each point, fill our structure and pass it to API */
-							rpoint.position = rpositionRot * RobotMap::kSensorUnitsPerRotation*2*3.14159*.5 ;  //Convert Revolutions to Units
-							rpoint.velocity = rvelocityRPM * (RobotMap::kSensorUnitsPerRotation*2*3.14159*.5) / 600.0; //Convert RPM to Units/100ms
+							rpoint.position = rpositionRot * RobotMap::kSensorUnitsPerRotation*2*3.14159*.5*1.5 ;  //Convert Revolutions to Units
+							rpoint.velocity = rvelocityRPM * (RobotMap::kSensorUnitsPerRotation*2*3.14159*.5*1.5) / 600.0; //Convert RPM to Units/100ms
 							rpoint.headingDeg = 0; /* future feature - not used in this example*/
 							rpoint.profileSlotSelect0 = RobotMap::kSlotIDx_Motion; /* which set of gains would you like to use [0,3]? */
 							rpoint.profileSlotSelect1 = 0; /* future feature  - not used in this example - cascaded PID [0,1], leave zero */
@@ -367,7 +367,7 @@ void MotionProfile::startFilling()
 								rpoint.zeroPos = true; /* set this to true on the first point */
 
 							rpoint.isLastPoint = false;
-							if ((j - 1) == rightCnt)
+							if ((j + 1) == rightCnt)
 								rpoint.isLastPoint = true; /* set this to true on the last point  */
 
 							//frontleft->PushMotionProfileTrajectory(point);
