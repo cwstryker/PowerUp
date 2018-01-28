@@ -16,6 +16,7 @@
 #include "Commands/Subsystem.h"
 #include "../Robot.h"
 #include "../Subsystems/MotionProfile.h"
+#include "../Instrumentation.h"
 
 /**
  *

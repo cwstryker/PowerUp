@@ -34,6 +34,7 @@ void RunMotionProfile::Initialize() {
 	//motionProfile.reset(new MotionProfile());
 	Robot::motionProfile->initMotionProfile();
 
+	Robot::motionProfile->startFilling(kLeftMotionProfile, kLeftMotionProfileSz, kRightMotionProfile, kRightMotionProfileSz);
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -41,7 +42,7 @@ void RunMotionProfile::Execute() {
 
 	Robot::motionProfile->PeriodicTask();
 
-	Robot::motionProfile->startFilling(kLeftMotionProfile, kLeftMotionProfileSz, kRightMotionProfile, kRightMotionProfileSz);
+	//Robot::motionProfile->startFilling(kLeftMotionProfile, kLeftMotionProfileSz, kRightMotionProfile, kRightMotionProfileSz);
 
 
 	Robot::motionProfile->control();
@@ -56,7 +57,12 @@ void RunMotionProfile::Execute() {
 
 // Make this return true when this Command no longer needs to run execute()
 bool RunMotionProfile::IsFinished() {
+	if(Robot::motionProfile->_status.isLast==true){
+		return true;
+	}
+	else{
     return false;
+	}
 }
 
 // Called once after isFinished returns true
